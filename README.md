@@ -70,4 +70,20 @@ Here are some of them
   * Most common wordlists for hidden files are:
     * https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/common.txt
 
-This output indicates that the listed paths exist or respond successfully on the target server.
+Here’s a clean, professional disclaimer section you can paste **after** the content:
+
+---
+
+##  Disclaimer
+
+This script is provided **for educational and authorized security testing purposes only**.
+
+You must **only** use this tool against web servers and applications that you **own** or have **explicit permission** to test. Unauthorized scanning, enumeration, or probing of systems you do not control may be illegal and could violate local, national, or international laws.
+
+The author assumes **no responsibility or liability** for misuse of this script or for any damage caused by its use. By running this script, you acknowledge that you understand these risks and agree to use it responsibly and ethically.
+
+If you are learning web security, always practice in controlled environments such as:
+
+* Local test servers
+* Lab environments
+* Intentionally vulnerable applications (e.g., training platforms)
