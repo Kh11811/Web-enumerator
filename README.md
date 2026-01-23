@@ -6,7 +6,7 @@ To run this script, you need:
 
 * **Bash** shell (Linux, macOS, or WSL)
 * **curl** installed
-* A **wordlist file** (one word per line)
+* A **wordlist file**
 * Network access to the target web server
 
 ---
