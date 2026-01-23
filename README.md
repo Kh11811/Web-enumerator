@@ -64,15 +64,10 @@ This output indicates that the listed paths exist or respond successfully on the
 The most widespread wordlists are found in the Seclist DB in Github.
 Here are some of them 
   * Most common wordlists for hidden directories are:
-  * https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-small.txt
-  * https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt
-  * https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-big.txt
+    * https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-small.txt
+    * https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt
+    * https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-big.txt
   * Most common wordlists for hidden files are:
-  * https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/common.txt
-```text
-admin : 200
-login : 301
-images : 403
-```
+    * https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/common.txt
 
 This output indicates that the listed paths exist or respond successfully on the target server.
