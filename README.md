@@ -73,6 +73,9 @@ Here are some of them
 Here’s a clean, professional disclaimer section you can paste **after** the content:
 
 ---
+##  To note
+
+The provided description is for the .sh file. However, i advise you to try the .py file. It is more informative in its output.
 
 ##  Disclaimer
 
