@@ -1,97 +1,69 @@
-# Basic Web Path Enumerator (Bash Script)
+# Basic Web Path Enumerator
 
-##  Requirements
+## Overview
 
-To run this script, you need:
+This project contains **two simple web path enumeration scripts**:
 
-* **Bash** shell (Linux, macOS, or WSL)
-* **curl** installed
-* A **wordlist file**
-* Network access to the target web server
+* A **Bash script** using `curl`
+* A **Python script** using the `requests` library
 
----
+Both scripts are designed to discover existing directories or files on a web server by appending entries from a wordlist to a base URL and analyzing HTTP response codes.
 
-##  Introduction
-
-This Bash script is a **basic web path enumerator**.
-It is designed to discover existing directories or files on a web server by appending words from a wordlist to a base URL and analyzing the HTTP response codes.
-
-The script performs simple web enumeration and can be useful for:
-
-* Web reconnaissance
-* Learning how directory enumeration works
-* Identifying accessible paths on a web server
-
-It is a lightweight and educational alternative to tools like `dirb`, `gobuster`, or `ffuf`.
+These tools are intended for **educational purposes**, **web reconnaissance**, and **learning how directory enumeration works**. They are lightweight alternatives to tools such as `dirb`, `gobuster`, or `ffuf`.
 
 ---
 
-##  How It Works
+## Features
 
-1. The script requires **exactly two arguments**:
-
-   * A wordlist file
-   * A base URL
-2. If the required arguments are not provided, the script exits with an error message.
-3. Each word from the wordlist is appended to the base URL.
-4. A **HEAD request** is sent to the constructed URL using `curl`.
-5. The HTTP response status code is extracted.
-6. Only paths returning a status code **less than or equal to 399** are displayed, indicating that the resource exists or is accessible.
-
-Client and server error responses (400+) are ignored.
+* Uses **HEAD requests** (faster and less intrusive)
+* Filters out client and server errors (HTTP 400+)
+* Works with any custom wordlist
+* Simple and readable output
+* Available in **Bash** and **Python**
 
 ---
 
-##  Example Usage
+## Script Versions
 
-### Command
+### Bash Script (`.sh`)
 
-```bash
-bash script.sh words.txt https://example.com
-```
+* Lightweight and dependency-minimal
+* Uses `curl`
+* Suitable for quick tests and shell environments
 
-### Sample Output
+### Python Script (`.py`)
 
-```text
-admin : 200
-login : 301
-images : 403
-```
+* More readable and extensible
+* More informative output
+* Better suited for learning and future improvements
 
-This output indicates that the listed paths exist or respond successfully on the target server.
-
-### Wordlists
-The most widespread wordlists are found in the Seclist DB in Github.
-Here are some of them 
-  * Most common wordlists for hidden directories are:
-    * https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-small.txt
-    * https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt
-    * https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-big.txt
-  * Most common wordlists for hidden files are:
-    * https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/common.txt
-
-Here’s a clean, professional disclaimer section you can paste **after** the content:
+> **Note:** While both scripts work similarly, the **Python version is recommended** for clarity and maintainability.
 
 ---
-##  To note
-
-The provided description is for the .sh file. However, i advise you to try the .py file. It is more informative in its output.
-
-
-
-
-# Basic Web Path Enumerator (Python Script)
 
 ## Requirements
 
-To run this script, you need:
+### Bash Script Requirements
 
-* **Python 3**
-* The **requests** Python library
+To run the Bash script, you need:
+
+* **Bash shell** (Linux, macOS, or WSL)
+* **curl**
 * A **wordlist file**
 * Network access to the target web server
 
-### Install dependencies
+---
+
+### Python Script Requirements
+
+To run the Python script, you need:
+
+* **Python 3**
+* The **requests** library
+* A **wordlist file**
+* Network access to the target web server
+
+#### Install dependencies
 
 ```bash
 pip install requests
@@ -99,48 +71,51 @@ pip install requests
 
 ---
 
-## Introduction
-
-This Python script is a **basic web path enumerator**.
-It is designed to discover existing directories or files on a web server by appending words from a wordlist to a base URL and analyzing HTTP response codes.
-
-The script performs simple web enumeration and can be useful for:
-
-* Web reconnaissance
-* Learning how directory enumeration works
-* Identifying accessible paths on a web server
-* Understanding HTTP status codes and HEAD requests
-
-It serves as a lightweight and educational alternative to tools like `dirb`, `gobuster`, or `ffuf`, with more readable output than a basic shell script.
-
----
-
-## How It Works
+## How It Works (Both Versions)
 
 1. The script requires **exactly two arguments**:
 
    * A wordlist file
    * A base URL
-2. If the required arguments are not provided, the script prints an error message and exits.
-3. The wordlist file is opened and read line by line.
-4. Each word is appended to the base URL to form a full path.
-5. A **HEAD request** is sent to the constructed URL using the `requests` library.
-6. If the HTTP response status code is **less than 400**, the path is considered valid and displayed.
-7. Each request is labeled with a numbered use case for easier tracking.
+2. If the arguments are missing, the script exits with an error.
+3. Each word from the wordlist is appended to the base URL.
+4. A **HEAD request** is sent to the constructed URL.
+5. The HTTP response status code is checked.
+6. Only responses with status codes **below 400** are displayed.
 
 Client and server error responses (400+) are ignored.
 
 ---
 
-## Example Usage
+## Usage Examples
 
-### Command
+### Bash Script
+
+#### Command
+
+```bash
+bash script.sh words.txt https://example.com
+```
+
+#### Sample Output
+
+```text
+admin : 200
+login : 301
+images : 403
+```
+
+---
+
+### Python Script
+
+#### Command
 
 ```bash
 python3 script.py words.txt https://example.com
 ```
 
-### Sample Output
+#### Sample Output
 
 ```text
 Usecase n 1
@@ -151,21 +126,21 @@ Usecase n 3
 images
 ```
 
-This output indicates that the listed paths respond successfully or exist on the target server.
+This output indicates that the listed paths exist or respond successfully on the target server.
 
 ---
 
 ## Wordlists
 
-The most widespread wordlists are found in the **SecLists** repository on GitHub.
+The most commonly used wordlists can be found in the **SecLists** GitHub repository.
 
-### Common wordlists for hidden directories:
+### Common Wordlists for Hidden Directories
 
 * [https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-small.txt](https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-small.txt)
 * [https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt](https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt)
 * [https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-big.txt](https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-big.txt)
 
-### Common wordlists for hidden files:
+### Common Wordlists for Hidden Files
 
 * [https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/common.txt](https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/common.txt)
 
@@ -173,32 +148,28 @@ The most widespread wordlists are found in the **SecLists** repository on GitHub
 
 ## To Note
 
-The provided description above refers to the **Python (.py) implementation**.
+The Bash and Python scripts perform the same core task, but the **Python implementation**:
 
-Compared to the Bash version, the Python script is:
+* Is easier to read
+* Is easier to extend
+* Produces clearer output
+* Is better suited for learning and customization
 
-* More readable
-* Easier to extend
-* More informative in its output
-* Better suited for learning and future enhancements
-
-You are advised to use the **Python version** if you want clearer results and better control over request handling.
+You are encouraged to experiment with both versions.
 
 ---
 
 ## Disclaimer
 
-This script is provided **for educational and authorized security testing purposes only**.
+This project is provided **for educational and authorized security testing purposes only**.
 
-You must **only** use this tool against web servers and applications that you **own** or have **explicit permission** to test. Unauthorized scanning, enumeration, or probing of systems you do not control may be illegal and could violate local, national, or international laws.
+You must **only** use these scripts against web servers and applications that you **own** or have **explicit permission** to test. Unauthorized scanning or enumeration of systems you do not control may be illegal and could violate local, national, or international laws.
 
-The author assumes **no responsibility or liability** for misuse of this script or for any damage caused by its use. By running this script, you acknowledge that you understand these risks and agree to use it responsibly and ethically.
+The author assumes **no responsibility or liability** for misuse of these scripts or for any damage caused by their use. By running these scripts, you acknowledge that you understand these risks and agree to use them responsibly and ethically.
 
-If you are learning web security, always practice in controlled environments such as:
+For learning purposes, always practice in controlled environments such as:
 
 * Local test servers
 * Lab environments
 * Intentionally vulnerable applications (e.g., training platforms)
-
----
 
