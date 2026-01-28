@@ -77,7 +77,116 @@ Here’s a clean, professional disclaimer section you can paste **after** the co
 
 The provided description is for the .sh file. However, i advise you to try the .py file. It is more informative in its output.
 
-##  Disclaimer
+
+
+
+# Basic Web Path Enumerator (Python Script)
+
+## Requirements
+
+To run this script, you need:
+
+* **Python 3**
+* The **requests** Python library
+* A **wordlist file**
+* Network access to the target web server
+
+### Install dependencies
+
+```bash
+pip install requests
+```
+
+---
+
+## Introduction
+
+This Python script is a **basic web path enumerator**.
+It is designed to discover existing directories or files on a web server by appending words from a wordlist to a base URL and analyzing HTTP response codes.
+
+The script performs simple web enumeration and can be useful for:
+
+* Web reconnaissance
+* Learning how directory enumeration works
+* Identifying accessible paths on a web server
+* Understanding HTTP status codes and HEAD requests
+
+It serves as a lightweight and educational alternative to tools like `dirb`, `gobuster`, or `ffuf`, with more readable output than a basic shell script.
+
+---
+
+## How It Works
+
+1. The script requires **exactly two arguments**:
+
+   * A wordlist file
+   * A base URL
+2. If the required arguments are not provided, the script prints an error message and exits.
+3. The wordlist file is opened and read line by line.
+4. Each word is appended to the base URL to form a full path.
+5. A **HEAD request** is sent to the constructed URL using the `requests` library.
+6. If the HTTP response status code is **less than 400**, the path is considered valid and displayed.
+7. Each request is labeled with a numbered use case for easier tracking.
+
+Client and server error responses (400+) are ignored.
+
+---
+
+## Example Usage
+
+### Command
+
+```bash
+python3 script.py words.txt https://example.com
+```
+
+### Sample Output
+
+```text
+Usecase n 1
+admin
+Usecase n 2
+login
+Usecase n 3
+images
+```
+
+This output indicates that the listed paths respond successfully or exist on the target server.
+
+---
+
+## Wordlists
+
+The most widespread wordlists are found in the **SecLists** repository on GitHub.
+
+### Common wordlists for hidden directories:
+
+* [https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-small.txt](https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-small.txt)
+* [https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt](https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt)
+* [https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-big.txt](https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-big.txt)
+
+### Common wordlists for hidden files:
+
+* [https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/common.txt](https://github.com/danielmiessler/SecLists/blob/master/Discovery/Web-Content/common.txt)
+
+---
+
+## To Note
+
+The provided description above refers to the **Python (.py) implementation**.
+
+Compared to the Bash version, the Python script is:
+
+* More readable
+* Easier to extend
+* More informative in its output
+* Better suited for learning and future enhancements
+
+You are advised to use the **Python version** if you want clearer results and better control over request handling.
+
+---
+
+## Disclaimer
 
 This script is provided **for educational and authorized security testing purposes only**.
 
@@ -90,3 +199,6 @@ If you are learning web security, always practice in controlled environments suc
 * Local test servers
 * Lab environments
 * Intentionally vulnerable applications (e.g., training platforms)
+
+---
+
